@@ -7,7 +7,23 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
-    username: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING,
+      validate:{
+        unique(value){
+          return User.findOne(
+            {
+              where:{username:value}
+            }
+          )
+          .then((data)=>{
+            if(data){
+              throw new Error ('Username sudah digunakan.mohon mencari username yang lain')
+            }
+          })
+        }
+      }
+    }, 
     email: {
       type: DataTypes.STRING,
       validate:{
@@ -29,7 +45,8 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     description: DataTypes.STRING,
     birthday:DataTypes.INTEGER,
-    secret: DataTypes.STRING
+    secret: DataTypes.STRING,
+    login: DataTypes.INTEGER
   }, {hooks:{
     beforeCreate:(instance, options)=>{
       let sct = String(Math.random())
