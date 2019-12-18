@@ -41,7 +41,7 @@
                     <td><%= place.name %></td>
                     <td><%= place.location %></td>
                     <td><%= place.description %></td>
-                    <td><button>Visit</button></td>
+                    <td><a href="/places/<%= place.id %>"><button>Visit</button></a></td>
                 </tr>
                 <% } %>
             <% } %>
