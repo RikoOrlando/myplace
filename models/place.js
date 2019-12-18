@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, { sequelize });
   Place.associate = function(models) {
     Place.belongsToMany(models.User, { through: models.UserPlace })
+    Place.hasMany(models.UserPlace)
     // associations can be defined here
   };
   return Place;

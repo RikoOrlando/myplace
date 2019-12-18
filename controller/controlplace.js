@@ -11,6 +11,12 @@ class PlaceController{
             }
         )
         .then((data)=>{
+            for(let i = 0; i<data.length; i++) {
+                data[i].setDataValue('visitor',data[i].Users.length)
+            }
+            data = data.sort((a, b) => {return b.getDataValue('visitor') - a.getDataValue('visitor')})
+            data = data.slice(0,5)
+            
             res.render('home', { places: data})
         })
         .catch((err)=>{
