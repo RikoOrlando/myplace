@@ -1,56 +1,27 @@
-let usermodel = require('../models').User
-let model = require('../models')
+const PlaceModel = require('../models').Place
+const UserModel = require('../models').User
 
 
 
-class Controller {
-    static profile(req,res){
-        usermodel.findOne(
-            {
-                include:[
-                    model.Place
-                ],
-                where:{id:1}
-            }
-        )
-        .then((data)=>{
-            console.log(data)
-        })
-        .catch((err)=>{
-            console.log(err)
+class UserController {
+   static updateUser(req,res){
+       UserModel.update({login: 1},{where:{password: req.body.password}, returning: true})
+       .then(arr=>{
+           res.redirect(`/user/${arr[1][0].id}`)
+       })
+       .catch(err=>res.send(err))
+   }
+   static showLogin(req,res){
+       res.render('login')
+   }
+    static showUserPage(req,res){
+        UserModel.findOne({include: [PlaceModel],where:{id: req.params.user_id,login: 1}})
+        .then(data=>{
+            // res.send(data)
+            res.render('userpage',{user:data})
         })
     }
-    
 }
 
 
-
-
-
-
-
-Controller.profile('er','er')
-
-// let data = {
-//     first_name: 'Febriani',
-//     last_name: 'Kenedy',
-//     username: 'febrianikenedy',
-//     email: 'febrianikenedy@gmail.com',
-//     password: 'febrianikenedy',
-//     description: 'Jangan Menyerah',
-//     birthday:null
-//   }
-
-
-
-// let review = {
-//     UserId: 6,
-//     PlaceId: 9,
-//     rating: 4,
-//     review: 'max 255 char'
-//   }
-
- 
-
-
-module.exports=Controller
+module.exports=UserController

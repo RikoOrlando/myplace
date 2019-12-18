@@ -206,7 +206,7 @@ let arr = [
 ]
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('userPlaces', arr, {});
+    return queryInterface.bulkInsert('UserPlaces', arr, {});
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -220,7 +220,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('userPlaces', null, {});
+    return queryInterface.bulkDelete('UserPlaces', null, {});
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.

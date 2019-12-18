@@ -1,12 +1,12 @@
-const modelplace = require('../models').Place
-const model = require('../models')
+const PlaceModel = require('../models').Place
+const UserModel = require('../models').User
 
-class Place{
+class PlaceController{
     static findtop5(req,res){
-        modelplace.findAll(
+        PlaceModel.findAll(
             {
                 include:[
-                    model.User,
+                    UserModel
                 ]
             }
         )
@@ -17,18 +17,22 @@ class Place{
             res.send(err)
         })
     }
+    static showSignUp(req,res){
+        res.render('signup')
+    }
+    static createUser(req,res){
+        UserModel.create({...req.body,login: 0})
+        .then(x=>{
+            res.redirect('/')
+        })
+        .catch(err=>{
+            res.send(err)
+        })
+    }
 }
-Place.findtop5('r','r')
-
-let data ={
-    name: 'Jalan Malioboro',
-    location: 'Yogyakarta',
-    description:'maksimal 255 char'
-  }
-
 
 
   
 
 
-module.exports=Place
+module.exports=PlaceController

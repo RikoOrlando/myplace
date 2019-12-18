@@ -76,6 +76,7 @@ let arr = [
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert('Places', arr, {});
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -89,6 +90,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
+    return queryInterface.bulkDelete('Places', null, {});
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.

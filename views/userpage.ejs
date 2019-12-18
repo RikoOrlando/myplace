@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Page</title>
+</head>
+<body>
+    <h3>VISITED PLACES</h3>
+    <table>
+        <th>No.</th>
+        <th>Location</th>
+        <th>Description</th>
+        <% if(user.Places.length>0){ %> 
+            <% let number = 0 %>
+            <% for(let place of user.Places){ %> 
+                <% number+=1 %>
+                <tr>
+                    <td><%= number %>.</td>
+                    <td><%= place.location %></td>
+                    <td><%= place.description %></td>
+                </tr>
+                <% } %>
+            <% } %>
+    </table>
+</body>
+</html>

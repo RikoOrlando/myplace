@@ -1,20 +1,24 @@
 const express = require('express')
 const app = express()
 // const router = require('./router')
-const ControllerPlace = require('./controller/controlplace')
+const PlaceController = require('./controller/controlplace')
+const UserController = require('./controller/controluser')
 app.use(express.urlencoded({ extended: true }))
+app.set('view engine', 'ejs');
 
 
 //home page
-app.get('/',ControllerPlace.findtop5)//akan render home.ejs dan menyediakan data" places
+app.get('/',PlaceController.findtop5)//akan render home.ejs dan menyediakan data" places
 
-// app.get('/sign-up', Controller.showSignUp)//render form 
-// app.post('/sign-up', Controller.createUser)// islogin = false (default)
+app.get('/sign-up', PlaceController.showSignUp)//render form 
+app.post('/sign-up', PlaceController.createUser)// islogin = false (default)
 
-// app.get('/log-in', Controller.showLogin)//render form login
-// app.post('/log-in', Controller.updateUser)// update isLogin jadi true
+app.get('/log-in', UserController.showLogin)//render form login
+app.post('/log-in', UserController.updateUser)// update isLogin jadi true
 
-// app.get('/:place_id/place', Controller.showPlace)// kalau gambar recommended di klik akan pindah ke page deskripsi tempat
+app.get('/user/:user_id', UserController.showUserPage)
+
+// app.get('/:place_id/place', ControllerPlace.showPlace)// kalau gambar recommended di klik akan pindah ke page deskripsi tempat
 
 app.listen(3000,()=>{
     console.log("server dengan local host 3000 sedang berjalan")
