@@ -20,6 +20,8 @@ app.get('/user/:user_id', UserController.showUserPage)
 
 app.post('/log-out', UserController.logOutUser)
 
+//app.get('/places/:id', PlaceController.descripton)
+
 // app.get('/:place_id/place', ControllerPlace.showPlace)// kalau gambar recommended di klik akan pindah ke page deskripsi tempat
 
 app.listen(3000,()=>{
