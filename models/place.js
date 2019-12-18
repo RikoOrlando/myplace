@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
   class Place extends Model{}
   Place.init({
     name: DataTypes.STRING,
-    location: DataTypes.STRING
+    location: DataTypes.STRING,
+    description:DataTypes.STRING
   }, { sequelize });
   Place.associate = function(models) {
     Place.belongsToMany(models.User, { through: models.UserPlace })

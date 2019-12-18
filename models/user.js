@@ -1,13 +1,47 @@
 'use strict';
+const pass = require('../helper/passwordhash')
 module.exports = (sequelize, DataTypes) => {
   const Model = sequelize.Sequelize.Model
   class User extends Model{}
+
   User.init({
-    name: DataTypes.STRING,
+    first_name: DataTypes.STRING,
+    last_name: DataTypes.STRING,
     username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING
-  }, { sequelize });
+    email: {
+      type: DataTypes.STRING,
+      validate:{
+        isEmail:true,
+        unique(value){
+          return User.findOne(
+            {
+              where:{email:value}
+            }
+          )
+          .then((data)=>{
+            if(data){
+              throw new Error ('Email ini sudah terdaftar pada user lain')
+            }
+          })
+        }
+      }
+    },
+    password: DataTypes.STRING,
+    description: DataTypes.STRING,
+    birthday:DataTypes.INTEGER,
+    secret: DataTypes.STRING
+  }, {hooks:{
+    beforeCreate:(instance, options)=>{
+      let sct = String(Math.random())
+      instance.password = pass(sct,instance.password)
+      instance.secret = sct
+
+    }
+
+  }, 
+    sequelize 
+  }
+  );
   User.associate = function(models) {
     User.belongsToMany(models.Place, { through: models.UserPlace })
     // associations can be defined here
