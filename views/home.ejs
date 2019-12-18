@@ -34,6 +34,7 @@
     <div class="text-center">
         <a href="/:place_id/place"><img src="/images/<%= obj.id %>.jpeg" class="rounded" alt="..."></a>
         <p><%= obj.name %>, <%= obj.location %></p>
+        <p>Visitors: <%= obj.getDataValue('visitor') %></p>
         <p><%= obj.description %></p>
     </div>
     <% } %>
