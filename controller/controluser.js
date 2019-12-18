@@ -15,10 +15,25 @@ class UserController {
        res.render('login')
    }
     static showUserPage(req,res){
+        let userdata = null
         UserModel.findOne({include: [PlaceModel],where:{id: req.params.user_id,login: 1}})
         .then(data=>{
             // res.send(data)
-            res.render('userpage',{user:data})
+            userdata = data
+            return PlaceModel.findAll()
+        })
+        .then(places=>{
+            let visited = []
+            let unvisited = []
+            userdata['Places'].forEach(element => {
+                visited.push(element.id)
+            });
+            places.forEach(element => {
+                if(visited.includes(element.id) === false){
+                    unvisited.push(element)
+                }
+            });
+            res.render('userpage',{user:userdata, unvisited})
         })
         .catch(err=>res.send(err))
     }
