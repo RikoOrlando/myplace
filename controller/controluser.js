@@ -23,6 +23,7 @@ class UserController {
         .catch(err=>res.send(err))
     }
     static logOutUser(req,res){
+        // res.send(`res: ${res}`)
         UserModel.update({login: 0},{where:{id:req.params.user_id, login:1}, returning: true})
         .then(x=>{
             res.redirect('/')
