@@ -18,6 +18,8 @@ app.post('/log-in', UserController.updateUser)// update isLogin jadi true
 
 app.get('/user/:user_id', UserController.showUserPage)
 
+app.post('/log-out', UserController.logOutUser)
+
 // app.get('/:place_id/place', ControllerPlace.showPlace)// kalau gambar recommended di klik akan pindah ke page deskripsi tempat
 
 app.listen(3000,()=>{
