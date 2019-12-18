@@ -20,6 +20,14 @@ class UserController {
             // res.send(data)
             res.render('userpage',{user:data})
         })
+        .catch(err=>res.send(err))
+    }
+    static logOutUser(req,res){
+        UserModel.update({login: 0},{where:{id:req.params.user_id, login:1}, returning: true})
+        .then(x=>{
+            res.redirect('/')
+        })
+        .catch(err=>res.send(err))
     }
 }
 
