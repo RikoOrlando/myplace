@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-// const router = require('./router')
+const user = require('./router/user')
 const PlaceController = require('./controller/controlplace')
 const UserController = require('./controller/controluser')
 const UserPlaceController = require('./controller/controluserplace')
@@ -18,15 +18,30 @@ app.post('/sign-up', PlaceController.createUser)// islogin = false (default)
 app.get('/log-in', UserController.showLogin)//render form login
 app.post('/log-in', UserController.updateUser)// update isLogin jadi true
 
-app.get('/user/:user_id', UserController.showUserPage)
-
 app.get('/log-out/:user_id', UserController.logOutUser)
 
-app.get('/user/:user_id/places/:place_id', PlaceController.description) //descipsi image
+app.use('/user', user)
 
-app.post('/user/:user_id/places/:place_id', UserPlaceController.review)
 
-// app.get('/:place_id/place', ControllerPlace.showPlace)// kalau gambar recommended di klik akan pindah ke page deskripsi tempat
+// function AuthenticateUser(req, res, next){
+//     // cek apakah user sudah login
+//     if (localStorage.userId === req.params.user_id){
+//         // user yang sedang login sesuai dengan params
+//         next()
+//     } else {
+//         res.redirect('/log-in', {errMessage: 'Silahkan login terlebih dahulu'})
+//     }
+// }
+
+ //descipsi image
+
+// function CekLoggedIn(req, res, next){
+//     if (localStorage.userId){
+//         next()
+//     } else {
+//         res.redirect('/log-in')
+//     }
+// }
 
 app.listen(3000,()=>{
     console.log("server dengan local host 3000 sedang berjalan")

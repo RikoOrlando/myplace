@@ -33,7 +33,7 @@ class UserController {
                     unvisited.push(element)
                 }
             });
-            res.render('userpage',{user:userdata, unvisited})
+            res.render('userpage',{user:userdata, unvisited, user_id:req.params.user_id})
         })
         .catch(err=>res.send(err))
     }
