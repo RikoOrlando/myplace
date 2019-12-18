@@ -5,6 +5,7 @@ const PlaceController = require('./controller/controlplace')
 const UserController = require('./controller/controluser')
 app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
 
 //home page
@@ -18,7 +19,7 @@ app.post('/log-in', UserController.updateUser)// update isLogin jadi true
 
 app.get('/user/:user_id', UserController.showUserPage)
 
-app.post('/log-out', UserController.logOutUser)
+app.get('/log-out/:user_id', UserController.logOutUser)
 
 //app.get('/places/:id', PlaceController.descripton)
 
