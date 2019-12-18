@@ -30,9 +30,13 @@
     </div>
         <h1>RECOMMENDED PLACES</h1>
     <!-- nanti ini yang di loop untuk ngeluarin list recommended: -->
+    <% for(let obj of places){ %> 
     <div class="text-center">
         <a href="/:place_id/place"><img src="..." class="rounded" alt="..."></a>
+        <p><%= obj.name %>, <%= obj.location %></p>
+        <p><%= obj.description %></p>
     </div>
+    <% } %>
 
     
 

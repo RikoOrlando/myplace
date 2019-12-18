@@ -11,13 +11,10 @@ class Place{
             }
         )
         .then((data)=>{
-            data.forEach(element => {
-                console.log(element.dataValues)
-                console.log(element.Users.length)
-            });
+            res.render('home', { places: data})
         })
         .catch((err)=>{
-            console.log(err)
+            res.send(err)
         })
     }
 }

@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Model = sequelize.Sequelize.Model
   class Place extends Model{}
-  sequelize.init({
+  Place.init({
     name: DataTypes.STRING,
     location: DataTypes.STRING
   }, { sequelize });

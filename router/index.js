@@ -1,5 +1,5 @@
-const user = require('./routeruser')
+// const user = require('./routeruser')
 
 
 
-module.exports={user}
+// module.exports={user}
