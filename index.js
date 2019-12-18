@@ -3,6 +3,7 @@ const app = express()
 // const router = require('./router')
 const PlaceController = require('./controller/controlplace')
 const UserController = require('./controller/controluser')
+const UserPlaceController = require('./controller/controluserplace')
 app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -21,7 +22,9 @@ app.get('/user/:user_id', UserController.showUserPage)
 
 app.get('/log-out/:user_id', UserController.logOutUser)
 
-app.get('/places/:id', PlaceController.description)
+app.get('/user/:user_id/places/:place_id', PlaceController.description) //descipsi image
+
+app.post('/user/:user_id/places/:place_id', UserPlaceController.review)
 
 // app.get('/:place_id/place', ControllerPlace.showPlace)// kalau gambar recommended di klik akan pindah ke page deskripsi tempat
 

@@ -32,14 +32,12 @@ class PlaceController{
 
     static description(req,res){
         PlaceModel.findOne({
-            where:{id:req.params.id}
+            where:{id:req.params.place_id}
         })
         .then(data=>{
             res.render('placedescription', {data:data})
         })
-        .catch(err=>{
-            res.send(err)
-        })
+        
     }
 }
 

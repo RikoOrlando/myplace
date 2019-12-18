@@ -8,12 +8,14 @@
 </head>
 <body>
     <h1><%= data.name %></h1>
-    <img src="" alt="">
+    <img src="/images/<%= data.id %>.jpeg" alt="">
     <p><%= data.description%></p>
-    <form action="POST">
+    <form method="POST">
         <p>Review</p>
         <input type="text" name="review" id=""><br>
-        <button type="submit">Submit</button>
+        <p>Score</p>
+        <input type="number" name="score">
+        <button type="submit" name="sub">Submit</button>
     </form>
 </body>
 </html>
