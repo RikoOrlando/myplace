@@ -7,6 +7,7 @@
     <h3>VISITED PLACES</h3>
     <table>
         <th>No.</th>
+        <th>Name</th>
         <th>Location</th>
         <th>Description</th>
         <% if(user.Places.length>0){ %> 
@@ -15,8 +16,31 @@
                 <% number+=1 %>
                 <tr>
                     <td><%= number %>.</td>
+                    <td><%= place.name %></td>
                     <td><%= place.location %></td>
                     <td><%= place.description %></td>
+                </tr>
+                <% } %>
+            <% } %>
+    </table>
+
+    <h3>UNVISITED PLACES</h3>
+    <table>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Action</th>
+        <% if(unvisited.length>0){ %> 
+            <% let number = 0 %>
+            <% for(let place of unvisited){ %> 
+                <% number+=1 %>
+                <tr>
+                    <td><%= number %>.</td>
+                    <td><%= place.name %></td>
+                    <td><%= place.location %></td>
+                    <td><%= place.description %></td>
+                    <td><button>Visit</button></td>
                 </tr>
                 <% } %>
             <% } %>
