@@ -2,9 +2,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Model = sequelize.Sequelize.Model
   class Place extends Model{}
-  sequelize.init({
+  Place.init({
     name: DataTypes.STRING,
-    location: DataTypes.STRING
+    location: DataTypes.STRING,
+    description:DataTypes.STRING
   }, { sequelize });
   Place.associate = function(models) {
     Place.belongsToMany(models.User, { through: models.UserPlace })

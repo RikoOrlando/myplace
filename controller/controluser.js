@@ -14,7 +14,7 @@ class Controller {
             }
         )
         .then((data)=>{
-            console.log(data.Places)
+            console.log(data)
         })
         .catch((err)=>{
             console.log(err)
@@ -26,24 +26,29 @@ class Controller {
 
 
 
-let data = {
-    first_name: 'Febriani',
-    last_name: 'Kenedy',
-    username: 'febrianikenedy',
-    email: 'febrianikenedy@gmail.com',
-    password: 'febrianikenedy',
-    description: 'Jangan Menyerah',
-    birthday:null
-  }
 
 
 
-let review = {
-    UserId: 6,
-    PlaceId: 9,
-    rating: 4,
-    review: 'max 255 char'
-  }
+Controller.profile('er','er')
+
+// let data = {
+//     first_name: 'Febriani',
+//     last_name: 'Kenedy',
+//     username: 'febrianikenedy',
+//     email: 'febrianikenedy@gmail.com',
+//     password: 'febrianikenedy',
+//     description: 'Jangan Menyerah',
+//     birthday:null
+//   }
+
+
+
+// let review = {
+//     UserId: 6,
+//     PlaceId: 9,
+//     rating: 4,
+//     review: 'max 255 char'
+//   }
 
  
 
