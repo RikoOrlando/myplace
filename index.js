@@ -21,7 +21,7 @@ app.get('/user/:user_id', UserController.showUserPage)
 
 app.get('/log-out/:user_id', UserController.logOutUser)
 
-//app.get('/places/:id', PlaceController.descripton)
+app.get('/places/:id', PlaceController.description)
 
 // app.get('/:place_id/place', ControllerPlace.showPlace)// kalau gambar recommended di klik akan pindah ke page deskripsi tempat
 
