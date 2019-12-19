@@ -5,46 +5,59 @@
 </head>
 <body>
     <%- include('partial/navbar') %>
-    <h3>VISITED PLACES</h3>
-    <table>
-        <th>No.</th>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Description</th>
-        <% if(user.Places.length>0){ %> 
-            <% let number = 0 %>
-            <% for(let place of user.Places){ %> 
-                <% number+=1 %>
+    <h3 style="text-align: center;margin-top: 50px;">VISITED PLACES</h3>
+    <div class="container">
+        <table class="table mt-5">
+            <thead class="thead-dark">
                 <tr>
-                    <td><%= number %>.</td>
-                    <td><%= place.name %></td>
-                    <td><%= place.location %></td>
-                    <td><%= place.description %></td>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                    <th>Action</th>
                 </tr>
+            </thead>
+            <% if(user.Places.length>0){ %> 
+                <% let number = 0 %>
+                <% for(let place of user.Places){ %> 
+                    <% number+=1 %>
+                    <tr>
+                        <td><%= number %>.</td>
+                        <td><%= place.name %></td>
+                        <td><%= place.location %></td>
+                        <td><%= place.description %></td>
+                        <td><a href="<%= place.id %>/delete">UNDO</a></td>
+                    </tr>
+                    <% } %>
                 <% } %>
-            <% } %>
-    </table>
-
-    <h3>UNVISITED PLACES</h3>
-    <table>
-        <th>No.</th>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Description</th>
-        <th>Action</th>
-        <% if(unvisited.length>0){ %> 
-            <% let number = 0 %>
-            <% for(let place of unvisited){ %> 
-                <% number+=1 %>
+        </table>
+    </div>
+    <h3 style="text-align: center;margin-top: 50px;">UNVISITED PLACES</h3>
+    <div class="container">
+        <table class="table mt-5">
+            <thead class="thead-dark">
                 <tr>
-                    <td><%= number %>.</td>
-                    <td><%= place.name %></td>
-                    <td><%= place.location %></td>
-                    <td><%= place.description %></td>
-                    <td><a href="/user/<%= user.id %>/places/<%= place.id %>"><button>Visit</button></a></td>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                    <th>Action</th>
                 </tr>
+            </thead>
+            <% if(unvisited.length>0){ %> 
+                <% let number = 0 %>
+                <% for(let place of unvisited){ %> 
+                    <% number+=1 %>
+                    <tr>
+                        <td><%= number %>.</td>
+                        <td><%= place.name %></td>
+                        <td><%= place.location %></td>
+                        <td><%= place.description %></td>
+                        <td><a href="/user/<%= user.id %>/places/<%= place.id %>"><button>Visit</button></a></td>
+                    </tr>
+                    <% } %>
                 <% } %>
-            <% } %>
-    </table>
+        </table>
+    </div> 
 </body>
 </html>
