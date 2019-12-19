@@ -28,6 +28,7 @@ app.get('/:place_id/place', PlaceController.showPlaceDetail)
 
 app.get('/log-out/:user_id', UserController.logOutUser)
 
+
 app.use('/user', user)
 
 
