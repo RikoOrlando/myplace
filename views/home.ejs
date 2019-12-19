@@ -29,15 +29,17 @@
           </ul>
         </div>
     </nav>
-    <div>
-        <!-- nanti masukin picture ke sini -->
-        <img src="..." class="img-fluid" alt="Responsive image">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Fluid jumbotron</h1>
+        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+      </div>
     </div>
         <h1>RECOMMENDED PLACES</h1>
     <!-- nanti ini yang di loop untuk ngeluarin list recommended: -->
     <% for(let obj of places){ %> 
     <div class="text-center">
-        <a href="/:place_id/place"><img src="/images/<%= obj.id %>.jpeg" class="rounded" alt="..."></a>
+        <a href="/<%= obj.id %>/place"><img src="/images/<%= obj.id %>.jpeg" class="rounded" alt="..."></a>
         <p><%= obj.name %>, <%= obj.location %></p>
         <p>Visitors: <%= obj.getDataValue('visitor') %></p>
         <p><%= obj.description %></p>

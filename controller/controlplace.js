@@ -1,5 +1,6 @@
 const PlaceModel = require('../models').Place
 const UserModel = require('../models').User
+const UserPlace = require('../models').UserPlace
 
 class PlaceController{
     static findtop5(req,res){
@@ -46,6 +47,13 @@ class PlaceController{
             res.render('placedescription', {data:data})
         })
         
+    }
+    static showPlaceDetail(req,res){
+        PlaceModel.findAll({where:{id: req.params.place_id},include: [UserModel]})
+        .then(data=>{
+            res.render('placedetail', {place:data, user:{id: req.session.userId}})
+        })
+        .catch(err=>res.send(err))
     }
 }
 

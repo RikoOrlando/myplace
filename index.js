@@ -3,9 +3,9 @@ const app = express()
 const user = require('./router/user')
 const PlaceController = require('./controller/controlplace')
 const UserController = require('./controller/controluser')
-const UserPlaceController = require('./controller/controluserplace')
+// const UserPlaceController = require('./controller/controluserplace')
 const session = require('express-session')
-const cekUserLogin = require('./middlewares/cekUserLogin')
+// const cekUserLogin = require('./middlewares/cekUserLogin')
 app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -23,6 +23,8 @@ app.post('/sign-up', PlaceController.createUser)// islogin = false (default)
 
 app.get('/log-in', UserController.showLogin)//render form login
 app.post('/log-in', UserController.updateUser)// update isLogin jadi true
+
+app.get('/:place_id/place', PlaceController.showPlaceDetail)
 
 app.get('/log-out/:user_id', UserController.logOutUser)
 
