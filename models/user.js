@@ -1,5 +1,6 @@
 'use strict';
 const pass = require('../helper/passwordhash')
+const password = require('../helper/bcryptpassword')
 module.exports = (sequelize, DataTypes) => {
   const Model = sequelize.Sequelize.Model
   class User extends Model{}
@@ -49,10 +50,13 @@ module.exports = (sequelize, DataTypes) => {
     login: DataTypes.INTEGER
   }, {hooks:{
     beforeCreate:(instance, options)=>{
-      let sct = String(Math.random())
-      instance.password = pass(sct,instance.password)
-      instance.secret = sct
-
+     return password.hash(instance.password)
+      .then((dta)=>{
+        instance.password = dta
+      })
+    },
+    beforeUpdate:(instance, options)=>{
+      
     }
 
   }, 
