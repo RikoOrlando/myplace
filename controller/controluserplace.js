@@ -1,5 +1,6 @@
-
+const User = require('../models').User
 const Modeluserplace = require('../models').UserPlace
+const Place = require('../models').Place
 
 class Controlleruserplace{
     static review(req,res){
@@ -14,6 +15,14 @@ class Controlleruserplace{
             res.redirect(address)
         })
 
+    }
+    static deletePlace(req,res){
+        Modeluserplace.destroy({where:{UserId: req.params.user_id,PlaceId: req.params.place_id}})
+        .then(x=>{
+            // res.send(data)
+            res.redirect(`/user/${req.params.user_id}`)
+        })
+        .catch(err=>res.send(err))
     }
 }
 
