@@ -2,12 +2,19 @@ const PlaceModel = require('../models').Place
 const UserModel = require('../models').User
 
 
-
 class UserController {
    static updateUser(req,res){
-       UserModel.update({login: 1},{where:{password: req.body.password}, returning: true})
+       let user;
+       UserModel.findOne({where:{username: req.body.username}})
+       .then(data=>{
+           user = data
+           if(!data){
+            res.send('user not found')
+           }
+       })
        .then(arr=>{
-           res.redirect(`/user/${arr[1][0].id}`)
+           req.session.userId = user.id
+           res.redirect(`/user/${user.id}`)
        })
        .catch(err=>res.send(err))
    }
