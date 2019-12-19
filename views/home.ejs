@@ -40,9 +40,9 @@
     <% for(let obj of places){ %> 
     <div class="text-center">
         <a href="/<%= obj.id %>/place"><img src="/images/<%= obj.id %>.jpeg" class="rounded" alt="..."></a>
-        <p><%= obj.name %>, <%= obj.location %></p>
-        <p>Visitors: <%= obj.getDataValue('visitor') %></p>
-        <p><%= obj.description %></p>
+        <p class="text-muted"><%= obj.name %>, <%= obj.location %></p>
+        <p class="text-muted">Visitors: <%= obj.getDataValue('visitor') %></p>
+        <p class="text-muted"><%= obj.description %></p>
     </div>
     <% } %>
 
