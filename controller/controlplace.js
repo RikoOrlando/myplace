@@ -49,9 +49,12 @@ class PlaceController{
         
     }
     static showPlaceDetail(req,res){
+        
         PlaceModel.findAll({where:{id: req.params.place_id},include: [UserModel]})
         .then(data=>{
-            res.render('placedetail', {place:data, user:{id: req.session.userId}})
+            let rate = Math.round(UserPlace.rating(data[0].Users))
+            console.log(data[0].id)
+            res.render('placedetail', {place:data, user:{id: req.session.userId}, rate})
         })
         .catch(err=>res.send(err))
     }

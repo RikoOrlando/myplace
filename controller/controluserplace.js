@@ -6,7 +6,8 @@ class Controlleruserplace{
         let data = {
             PlaceId: req.params.place_id,
             UserId: req.params.user_id,
-            score:req.body.score
+            review: req.body.review,
+            score: req.body.score
         }
         Modeluserplace.create(data)
         .then(data=>{

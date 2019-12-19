@@ -10,6 +10,8 @@
 <body>
     <%- include('partial/navbar') %>
     <div class="container">
+        
+        <h2> Average Score: <%= rate %></h2>
         <table class="table mt-5">
             <thead class="thead-dark">
                 <tr>
@@ -26,7 +28,7 @@
                     <td><%= num %></td>
                     <td><%= obj.first_name %></td>
                     <td><%= obj.UserPlace.review %></td>
-                    <td><%= obj.UserPlace.score %></td>
+                    <td><%= obj.UserPlace.rating %></td>
                 </tr>
                 <% } %>
         </table>

@@ -1,7 +1,16 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Model = sequelize.Sequelize.Model
-  class UserPlace extends Model{}
+  class UserPlace extends Model{
+    static rating(arr){
+      let sum = 0
+      arr.forEach(element => {
+        sum+=element.UserPlace.rating
+      });
+      return sum/arr.length
+
+    }
+  }
   UserPlace.init({
     id: {
       allowNull: false,
