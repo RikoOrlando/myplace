@@ -54,9 +54,6 @@ module.exports = (sequelize, DataTypes) => {
       .then((dta)=>{
         instance.password = dta
       })
-    },
-    beforeUpdate:(instance, options)=>{
-      
     }
 
   }, 
