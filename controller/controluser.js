@@ -13,13 +13,8 @@ class UserController {
            }
        })
        .then(arr=>{
-<<<<<<< HEAD
-
-           res.redirect(`/user/${arr[1][0].id}`)
-=======
            req.session.userId = user.id
            res.redirect(`/user/${user.id}`)
->>>>>>> 5b1bf2cf8305d28434945304f45888f34afc34cd
        })
        .catch(err=>res.send(err))
    }
