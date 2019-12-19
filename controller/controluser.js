@@ -4,10 +4,22 @@ const UserModel = require('../models').User
 
 class UserController {
    static updateUser(req,res){
-       UserModel.update({login: 1},{where:{password: req.body.password}, returning: true})
+       let user;
+       UserModel.findOne({where:{username: req.body.username}})
+       .then(data=>{
+           user = data
+           if(!data){
+            res.send('user not found')
+           }
+       })
        .then(arr=>{
+<<<<<<< HEAD
 
            res.redirect(`/user/${arr[1][0].id}`)
+=======
+           req.session.userId = user.id
+           res.redirect(`/user/${user.id}`)
+>>>>>>> 5b1bf2cf8305d28434945304f45888f34afc34cd
        })
        .catch(err=>res.send(err))
    }

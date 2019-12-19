@@ -3,6 +3,7 @@ const UserModel = require('../models').User
 
 class PlaceController{
     static findtop5(req,res){
+        
         PlaceModel.findAll(
             {
                 include:[
@@ -16,8 +17,8 @@ class PlaceController{
             }
             data = data.sort((a, b) => {return b.getDataValue('visitor') - a.getDataValue('visitor')})
             data = data.slice(0,5)
-            
-            res.render('home', { places: data})
+            //disini
+            res.render('home', { places: data, userId: req.session.userId})
         })
         .catch((err)=>{
             res.send(err)
@@ -27,6 +28,7 @@ class PlaceController{
         res.render('signup')
     }
     static createUser(req,res){
+        // res.send(req.body)
         UserModel.create({...req.body,login: 0})
         .then(x=>{
             res.redirect('/')
