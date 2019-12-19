@@ -44,10 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     password: DataTypes.STRING,
-    description: DataTypes.STRING,
-    birthday:DataTypes.INTEGER,
-    secret: DataTypes.STRING,
-    login: DataTypes.INTEGER
+    description: DataTypes.STRING
   }, {hooks:{
     beforeCreate:(instance, options)=>{
      return password.hash(instance.password)

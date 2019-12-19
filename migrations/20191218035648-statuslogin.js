@@ -1,10 +1,9 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('Users', 'login', {
-      type: Sequelize.INTEGER,
-    })
+  up: (queryInterface, Sequelize) => {   
+    return queryInterface.removeColumn('Users', 'login')
+    
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -15,7 +14,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('Users', 'login', {
+    return queryInterface.addColumn('Users', 'login', {
       type: Sequelize.INTEGER,
     })
     /*

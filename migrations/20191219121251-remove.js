@@ -2,12 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('Users', 'secret', {
-        type: Sequelize.STRING,
-      })
-
-    
-    
+    return queryInterface.removeColumn('Users', 'secret')
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -18,7 +13,9 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('Users', 'secret')
+    return queryInterface.addColumn('Users', 'secret',{
+      type: Sequelize.INTEGER,
+    })
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
