@@ -25,6 +25,9 @@
         </div>
     </nav>
     <div class="container" style="margin-left: 100px;margin-right: 200px;margin-top: 50px;">
+        <% if (err !== null) {%>
+          <p style="color: red;" class="alert alert-warning alert-dismissible fade show"><%= err%></p>
+        <%}%>
         <form method="POST">
           <div class="form-group">
             <label>Username</label>
@@ -34,7 +37,7 @@
           <div class="form-group">
             <label>Password</label>
             <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="password">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <small id="emailHelp" class="form-text text-muted">Dont tell your password to anyone.</small>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>

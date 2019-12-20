@@ -19,6 +19,9 @@
         </div>
     </nav>
     <div class="container" style="margin-left: 100px;margin-right: 200px;margin-top: 50px;">
+        <% if (err !== null) {%>
+          <p style="color: red;" class="alert alert-warning alert-dismissible fade show"><%= err.message%></p>
+        <%}%>
       <form method="POST">
         <div class="form-group">
           <label>First Name</label>

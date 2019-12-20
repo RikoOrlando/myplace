@@ -26,7 +26,7 @@ class PlaceController{
         })
     }
     static showSignUp(req,res){
-        res.render('signup')
+        res.render('signup',{err:null})
     }
     static createUser(req,res){
         // res.send(req.body)
@@ -35,7 +35,7 @@ class PlaceController{
             res.redirect('/')
         })
         .catch(err=>{
-            res.send(err)
+            res.render('signup',{err})
         })
     }
 
@@ -44,7 +44,7 @@ class PlaceController{
             where:{id:req.params.place_id}
         })
         .then(data=>{
-            res.render('placedescription', {data:data})
+            res.render('placedescription', {data:data,err:null})
         })
         
     }
@@ -53,7 +53,7 @@ class PlaceController{
         PlaceModel.findAll({where:{id: req.params.place_id},include: [UserModel]})
         .then(data=>{
             let rate = Math.round(UserPlace.rating(data[0].Users))
-            console.log(data[0].id)
+            
             res.render('placedetail', {place:data, user:{id: req.session.userId}, rate})
         })
         .catch(err=>res.send(err))

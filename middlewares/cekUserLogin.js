@@ -5,7 +5,6 @@ function cekUserLogin(req,res,next){
         // /:user_id/places/:place_id
     User.findOne({where:{id: req.params.user_id}})
     .then(user=>{
-        console.log(user)
         if(!user){
             res.send('User Not Found')
         }else if(user.login===0){

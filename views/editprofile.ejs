@@ -1,54 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>Sign Up Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
-    type="text/javascript"></script>
-  </head>
+</head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <% if(userId){ %> 
-        <a class="navbar-brand" href="/user/<%= userId %>">MY PLACE</a>
-        <% } %>
+        <a class="navbar-brand" href="/">HOME</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/sign-up">Sign Up</a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="/log-in">Log In</a>
             </li>
           </ul>
         </div>
     </nav>
-    <div class="jumbotron jumbotron-fluid">
-      <img src="/images/logo.jpg" alt="" style="position: absolute; width: 185px;">
-      <div class="container">
-        <h1 class="display-4">MyPlace</h1>
-        <p class="lead">find Your Place</p>
-      </div>
-    </div>
-        <h1>RECOMMENDED PLACES</h1>
-    <!-- nanti ini yang di loop untuk ngeluarin list recommended: -->
-    <% for(let obj of places){ %> 
-    <div class="text-center">
-        <a href="/<%= obj.id %>/place"><img src="/images/<%= obj.id %>.jpeg" class="rounded" alt="..."></a>
-        <p class="text-muted"><%= obj.name %>, <%= obj.location %></p>
-        <p class="text-muted">Visitors: <%= obj.getDataValue('visitor') %></p>
-        <p class="text-muted" style="width: 500px;margin-right: auto;
-        margin-left: auto;
-        display: block;"><%= obj.description %></p>
-    </div>
-    <% } %>
-
+    <div class="container" style="margin-left: 100px;margin-right: 200px;margin-top: 50px;">
+        <% if (err !== null) {%>
+          <p style="color: red;"><%= err.message%></p>
+        <%}%>
+      <form method="POST">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" name="first_name" value="<%= data.first_name%>">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" name="last_name" value="<%= data.last_name%>">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" name="description" value="<%= data.description%>">
+        </div>
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" name="username" value="<%= data.username%>" readonly>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" name="email" value="<%= data.email%>" readonly>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+      </div> 
     
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

@@ -20,4 +20,7 @@ router.post('/:user_id/places/:place_id', UserPlaceController.review)
 
 router.get('/:user_id/:place_id/delete', UserPlaceController.deletePlace)
 
+router.get('/edit/:id', UserController.edit)
+router.post('/edit/:id', UserController.edituser)
+
 module.exports = router

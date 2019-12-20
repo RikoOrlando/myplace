@@ -20,7 +20,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     UserId: DataTypes.INTEGER,
     PlaceId: DataTypes.INTEGER,
-    rating: DataTypes.INTEGER,
+    rating:{
+      type:DataTypes.INTEGER,
+      validate:{
+        max:5
+      }
+    },
     review: DataTypes.STRING
   }, { sequelize });
   UserPlace.associate = function(models) {

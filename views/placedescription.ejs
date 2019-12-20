@@ -4,18 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Document</title>
 </head>
-<body>
+<body class="text-center">
     <h1><%= data.name %></h1>
     <img src="/images/<%= data.id %>.jpeg" alt="">
-    <p><%= data.description%></p>
-    <form method="POST">
-        <p>Review</p>
-        <input type="text" name="review" id=""><br>
-        <p>Score</p>
-        <input type="number" name="score">
-        <button type="submit" name="sub">Submit</button>
+    <p class="text-muted" style="width: 500px;margin-right: auto;
+        margin-left: auto;
+        display: block;"><%= data.description%></p>
+    <form method="POST" style="width: 500px;margin-right: auto;
+    margin-left: auto;
+    display: block;">
+        <div class="form-group">
+            <p>Review</p>
+            <input type="text" name="review" class="form-control" style="height: 100px;text-align:inherit"><br>
+
+        </div>
+        <div class="form-group"> 
+            <p>Score</p>
+            <input type="number" name="score" class="form-control">
+
+        </div>
+        <% if (err !== null) {%>
+            <p style="color: red;" class="alert alert-warning alert-dismissible fade show"><%= err%></p>
+          <%}%>
+        <small id="emailHelp" class="form-text text-muted">Max 5</small>
+        <button type="submit" name="sub" class="btn btn-primary">Submit</button>
     </form>
 </body>
 </html>

@@ -8,12 +8,21 @@ class Controlleruserplace{
             PlaceId: req.params.place_id,
             UserId: req.params.user_id,
             review: req.body.review,
-            score: req.body.score
+            rating: req.body.score
         }
         Modeluserplace.create(data)
         .then(data=>{
             let address = '/user/'+data.UserId
             res.redirect(address)
+        })
+        .catch(err=>{
+           return Place.findOne({
+                where:{id:req.params.place_id}
+            })
+
+        })
+        .then((data)=>{
+            res.render('placedescription', {data:data,err:'mohon memberikan rating antara 1-5'})
         })
 
     }

@@ -2,7 +2,7 @@ const PlaceModel = require('../models').Place
 const UserModel = require('../models').User
 const Compare = require('../helper/bcryptpassword')
 
-
+undefined
 class UserController {
    static updateUser(req,res){
        let user = null
@@ -17,13 +17,13 @@ class UserController {
                 res.redirect(`/user/${user.id}`)
             }
             else{
-                res.send('password salah')
+                res.render('login',{err:'Password salah'})
             }
        })
-       .catch(err=>res.send(err))
+       .catch(err=>res.render('login',{err:'Username belum terdaftar'}))
    }
    static showLogin(req,res){
-       res.render('login')
+       res.render('login', {err:null})
    }
     static showUserPage(req,res){
         let userdata = null
@@ -43,12 +43,33 @@ class UserController {
                     unvisited.push(element)
                 }
             });
+            
             res.render('userpage',{user:userdata, unvisited, user_id:req.params.user_id})
         })
         .catch(err=>res.send(err))
     }
     static logOutUser(req,res){
         req.session.destroy()
+        res.redirect('/')
+    }
+
+    static edit(req,res){
+        UserModel.findOne({where:{id:req.params.id}})
+        .then((data)=>{
+            res.render('editprofile',{data,err:null})
+        })
+    }
+
+    static edituser(req,res){
+        let update = {
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            description: req.body.description
+        }
+        UserModel.update(update,{where:{id:req.params.id}})
+        .then((data)=>{
+            res.redirect('/')
+        })
     }
 }
 
